@@ -34,6 +34,10 @@
             android:name=".GridActivity"
             android:label="@string/title_activity_grid"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:parentActivityName=".HomeActivity"
+            android:name=".FileActivity"
+            android:label="@string/title_activity_file" />
 
         <provider
             android:name=".data.WeatherProvider"
