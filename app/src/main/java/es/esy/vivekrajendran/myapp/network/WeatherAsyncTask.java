@@ -2,6 +2,7 @@ package es.esy.vivekrajendran.myapp.network;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,25 +14,26 @@ import java.util.ArrayList;
 import es.esy.vivekrajendran.myapp.model.WeatherModel;
 
 
-public class WeatherAsyncTask extends AsyncTask<String, Void, ArrayList<WeatherModel>> {
+public class WeatherAsyncTask extends AsyncTask<String, Void, ArrayList<WeatherModel>>
+        implements WeatherAsyncCallback{
+
+    private WeatherAsyncCallback weatherAsynceCallback = null;
+
+    public WeatherAsyncTask(WeatherAsyncCallback weatherAsynceCallback) {
+        this.weatherAsynceCallback = weatherAsynceCallback;
+    }
 
     @Override
     protected ArrayList<WeatherModel> doInBackground(String... params) {
         String response = doNetworkOperation(params[0]);
-        Log.i("TAG", "doInBackground: API response" + response);
-        return null;
-    }
-
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
+        return WeatherParser.getInstance().toArrayList(response);
     }
 
     @Override
     protected void onPostExecute(ArrayList<WeatherModel> weatherModels) {
-        super.onPostExecute(weatherModels);
+        Log.i("TAG", "onPostExecute: " + weatherModels.get(0).getHumidity());
+        weatherAsynceCallback.onTaskDone(weatherModels);
     }
-
 
     private String doNetworkOperation(String url) {
         HttpURLConnection httpURLConnection = null;
@@ -66,5 +68,9 @@ public class WeatherAsyncTask extends AsyncTask<String, Void, ArrayList<WeatherM
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void onTaskDone(ArrayList<WeatherModel> weatherModelArrayList) {
     }
 }

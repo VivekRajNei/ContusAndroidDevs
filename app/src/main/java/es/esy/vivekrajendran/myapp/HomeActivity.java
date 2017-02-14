@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import es.esy.vivekrajendran.myapp.model.Contract;
 import es.esy.vivekrajendran.myapp.model.User;
+import es.esy.vivekrajendran.myapp.network.WeatherAsyncTask;
 import es.esy.vivekrajendran.myapp.util.Chooser;
 import es.esy.vivekrajendran.myapp.util.CustomDialog;
 import es.esy.vivekrajendran.myapp.util.Dev;
@@ -76,6 +77,9 @@ public class HomeActivity extends AppCompatActivity {
                 Chooser chooser = new Chooser(this);
                 chooser.setContext(getApplicationContext());
                 chooser.show();
+                break;
+            case R.id.menu_network:
+                startActivity(new Intent(HomeActivity.this, WeatherActivity.class));
                 break;
             case R.id.menu_grid:
                 startActivity(new Intent(HomeActivity.this, GridActivity.class));

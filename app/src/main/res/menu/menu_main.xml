@@ -12,6 +12,8 @@
         android:id="@+id/menu_dev"/>
     <item android:id="@+id/menu_chooser"
         android:title="@string/chooser"/>
+    <item android:id="@+id/menu_network"
+        android:title="DoNetwork"/>
     <item android:id="@+id/menu_logout"
         android:title="@string/logout"/>
     <item android:title="@string/menu_exit"
