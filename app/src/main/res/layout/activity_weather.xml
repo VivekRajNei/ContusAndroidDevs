@@ -12,6 +12,12 @@
     tools:context="es.esy.vivekrajendran.myapp.WeatherActivity">
 
 
+    <ImageView
+        android:id="@+id/img_weather_image"
+        android:layout_width="250dp"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="250dp" />
     <TextView
         android:id="@+id/txtView_weather_title"
         android:layout_width="match_parent"

@@ -36,6 +36,7 @@
 
 
     <!--OpenWeatherMap.org apiKey-->
-    <string name="openweather_apikey">1a4c6876e942269eeed475dd217d48e8</string>
-    <string name="openweather_baseurl">https://api.openweathermap.org/data/2.5/weather?</string>
+    <string name="openweather_apikey" translatable="false">1a4c6876e942269eeed475dd217d48e8</string>
+    <string name="openweather_baseurl" translatable="false">https://api.openweathermap.org/data/2.5/weather?</string>
+    <string name="openweather_icon" translatable="false">http://openweathermap.org/img/w/</string>
 </resources>

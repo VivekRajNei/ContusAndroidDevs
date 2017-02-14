@@ -23,6 +23,7 @@ class WeatherParser {
             JSONArray weather = rootElement.getJSONArray("weather");
             JSONObject weatherOne = weather.getJSONObject(0);
 
+            String image_id = weatherOne.getString("icon");
             String name = rootElement.getString("name");
             String lon = String.valueOf(coord.getLong("lon"));
             String lat = String.valueOf(coord.getLong("lat"));
@@ -30,7 +31,7 @@ class WeatherParser {
             long temp = main.getLong("temp");
             long humidity = main.getLong("humidity");
 
-            weatherModelsArrayList.add(new WeatherModel(lat, lon, name, description, temp, humidity));
+            weatherModelsArrayList.add(new WeatherModel(lat, lon, name, description, temp, humidity, image_id));
             return weatherModelsArrayList;
         } catch (JSONException e) {
             e.printStackTrace();
