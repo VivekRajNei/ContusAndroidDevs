@@ -23,14 +23,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Home" />
+        <activity android:name=".HomeActivity" />
 
         <activity
             android:name=".RegisterActivity"
             android:theme="@style/NoActionBar"/>
 
         <activity
-            android:parentActivityName=".Home"
+            android:parentActivityName=".HomeActivity"
             android:name=".GridActivity"
             android:label="@string/title_activity_grid"
             android:theme="@style/AppTheme.NoActionBar"/>

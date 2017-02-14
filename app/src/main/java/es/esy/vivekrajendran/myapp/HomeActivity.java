@@ -25,7 +25,7 @@ import es.esy.vivekrajendran.myapp.util.RecyclerViewAdapter;
 import es.esy.vivekrajendran.myapp.util.ThemeDialog;
 
 
-public class Home extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     private ArrayList<User> users = new ArrayList<>();
     private RecyclerViewAdapter mRecyclerViewAdapter;
@@ -35,7 +35,7 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Home");
+            getSupportActionBar().setTitle("HomeActivity");
         }
 
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.rcylr_home);
@@ -78,14 +78,14 @@ public class Home extends AppCompatActivity {
                 chooser.show();
                 break;
             case R.id.menu_grid:
-                startActivity(new Intent(Home.this, GridActivity.class));
+                startActivity(new Intent(HomeActivity.this, GridActivity.class));
                 break;
             case R.id.menu_logout:
                 SharedPreferences.Editor editor = getSharedPreferences(Contract.Pref.PREF_NAME, MODE_PRIVATE).edit();
                 editor.putBoolean(Contract.Pref.ISLOGGED, false);
                 editor.apply();
                 startActivity(new Intent(this, LoginActivity.class));
-                Home.this.finish();
+                HomeActivity.this.finish();
                 break;
             case R.id.menu_exit:
                 this.finish();

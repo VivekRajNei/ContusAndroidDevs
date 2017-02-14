@@ -27,7 +27,7 @@ public class SplashActivity extends AppCompatActivity {
         if (!islogged) {
             intent = new Intent(SplashActivity.this, LoginActivity.class);
         } else {
-            intent = new Intent(SplashActivity.this, Home.class);
+            intent = new Intent(SplashActivity.this, HomeActivity.class);
         }
 
         new Handler().postDelayed(new Runnable() {

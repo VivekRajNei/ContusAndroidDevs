@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                         .logInUser(email.getText().toString(), password.getText().toString());
 
                 if (isValid) {
-                    Intent intent = new Intent(LoginActivity.this, Home.class);
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     intent.putExtra("email", email.getText().toString().trim());
                     startActivity(intent);
                     LoginActivity.this.finish();

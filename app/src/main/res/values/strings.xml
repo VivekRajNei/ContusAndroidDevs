@@ -15,6 +15,7 @@
     <string name="err_register">Unable to register</string>
     <string name="customize">Customize</string>
     <string name="ok">OK</string>
+    <string name="title_activity_file">File Operations</string>
     <string name="status">Ambient Status</string>
     <string name="status_more">Know what people are up to right now. Your music, battery and location statuses are on.</string>
     <string name="menu_about">DevProfile</string>
