@@ -49,7 +49,7 @@ public class GridActivity extends AppCompatActivity {
         ContentResolver contentResolver = getContentResolver();
 //        WeatherDbHelper weatherDbHelper = new WeatherDbHelper(this);
 
-        switch (item.getItemId()) {
+        /*switch (item.getItemId()) {
             case R.id.menu_grid_add:
                 ContentValues contentValues = new ContentValues();
                 contentValues.put(WeatherContract.LocationEntry.COLUMN_CITY, "Chennai");
@@ -121,7 +121,7 @@ public class GridActivity extends AppCompatActivity {
             break;
         }
 
-
+*/
         return true;
     }
 }

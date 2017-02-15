@@ -3,79 +3,57 @@ package es.esy.vivekrajendran.myapp.model;
 
 public class WeatherModel {
 
+    private String url;
+    private String place;
+    private String mag;
+    private String detail;
+    private long time;
 
-    private String lat;
-    private String lon;
-    private String location;
-    private String imgae_id;
-    private String description;
-    private long temp;
-    private long humidity;
-
-    public WeatherModel(String lat, String lon, String location, String description, long temp, long humidity, String imgae_id) {
-        this.lat = lat;
-        this.lon = lon;
-        this.location = location;
-        this.description = description;
-        this.temp = temp;
-        this.humidity = humidity;
-        this.imgae_id = imgae_id;
+    public WeatherModel(String url, String place, String mag, String detail, long time) {
+        this.url = url;
+        this.place = place;
+        this.mag = mag;
+        this.detail = detail;
+        this.time = time;
     }
 
-    public String getImgae_id() {
-        return imgae_id;
+    public String getUrl() {
+        return url;
     }
 
-
-    public void setImgae_id(String imgae_id) {
-        this.imgae_id = imgae_id;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public String getLat() {
-        return lat;
+    public String getPlace() {
+        return place;
     }
 
-    public void setLat(String lat) {
-        this.lat = lat;
+    public void setPlace(String place) {
+        this.place = place;
     }
 
-    public String getLon() {
-        return lon;
+    public String getMag() {
+        return mag;
     }
 
-    public void setLon(String lon) {
-        this.lon = lon;
+    public void setMag(String mag) {
+        this.mag = mag;
     }
 
-    public String getLocation() {
-        return location;
+    public String getDetail() {
+        return detail;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
-    public long getTemp() {
-        return temp;
+    public long getTime() {
+        return time;
     }
 
-    public void setTemp(long temp) {
-        this.temp = temp;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public long getHumidity() {
-        return humidity;
-    }
-
-    public void setHumidity(long humidity) {
-        this.humidity = humidity;
+    public void setTime(long time) {
+        this.time = time;
     }
 }

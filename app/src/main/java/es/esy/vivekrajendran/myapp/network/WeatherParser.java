@@ -1,6 +1,8 @@
 package es.esy.vivekrajendran.myapp.network;
 
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,30 +12,41 @@ import java.util.ArrayList;
 import es.esy.vivekrajendran.myapp.model.WeatherModel;
 
 class WeatherParser {
-    private ArrayList<WeatherModel> weatherModelsArrayList = new ArrayList<>();
 
-    public ArrayList<WeatherModel> toArrayList(String jsonString) {
+    private ArrayList<WeatherModel> weatherModelsArrayList = new ArrayList<>();
+    private String TAG = "TAG";
+
+    ArrayList<WeatherModel> toArrayList(String jsonString) {
 
         if (jsonString == null) return null;
 
         try {
+            Log.i(TAG, "toArrayList: " + jsonString);
             JSONObject rootElement = new JSONObject(jsonString);
-            JSONObject coord = rootElement.getJSONObject("coord");
-            JSONObject main = rootElement.getJSONObject("main");
-            JSONArray weather = rootElement.getJSONArray("weather");
-            JSONObject weatherOne = weather.getJSONObject(0);
+            JSONArray features = rootElement.getJSONArray("features");
+            Log.i(TAG, "toArrayList: " + features.length());
 
-            String image_id = weatherOne.getString("icon");
-            String name = rootElement.getString("name");
-            String lon = String.valueOf(coord.getLong("lon"));
-            String lat = String.valueOf(coord.getLong("lat"));
-            String description = weatherOne.getString("description");
-            long temp = main.getLong("temp");
-            long humidity = main.getLong("humidity");
+            String url;
+            String place;
+            String mag;
+            String detail;
+            long time;
 
-            weatherModelsArrayList.add(new WeatherModel(lat, lon, name, description, temp, humidity, image_id));
+            for (int i = 0; i < features.length(); i++) {
+                JSONObject temp = features.getJSONObject(i);
+                JSONObject properties = temp.getJSONObject("properties");
+                url = properties.getString("url");
+                place = properties.getString("place");
+                mag = String.valueOf(properties.getDouble("mag"));
+                detail = properties.getString("detail");
+                time = properties.getLong("time");
+                weatherModelsArrayList.add(new WeatherModel(url, place, mag, detail, time));
+            }
+
+            Log.i(TAG, "toArrayList: " + weatherModelsArrayList.size());
             return weatherModelsArrayList;
         } catch (JSONException e) {
+            Log.i(TAG, "toArrayList: " + e.getMessage());
             e.printStackTrace();
             return null;
         }

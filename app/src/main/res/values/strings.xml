@@ -36,7 +36,6 @@
 
 
     <!--OpenWeatherMap.org apiKey-->
-    <string name="openweather_apikey" translatable="false">1a4c6876e942269eeed475dd217d48e8</string>
-    <string name="openweather_baseurl" translatable="false">https://api.openweathermap.org/data/2.5/weather?</string>
-    <string name="openweather_icon" translatable="false">http://openweathermap.org/img/w/</string>
+    <string name="usgs_baseurl" translatable="false">http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson</string>
+    <string name="usgs_starttime" translatable="false">starttime=2017-01-01</string>
 </resources>

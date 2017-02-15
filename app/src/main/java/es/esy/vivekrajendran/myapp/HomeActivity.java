@@ -18,6 +18,8 @@ import java.util.ArrayList;
 
 import es.esy.vivekrajendran.myapp.model.Contract;
 import es.esy.vivekrajendran.myapp.model.User;
+import es.esy.vivekrajendran.myapp.model.WeatherModel;
+import es.esy.vivekrajendran.myapp.network.WeatherAsyncCallback;
 import es.esy.vivekrajendran.myapp.network.WeatherAsyncTask;
 import es.esy.vivekrajendran.myapp.util.Chooser;
 import es.esy.vivekrajendran.myapp.util.CustomDialog;
@@ -26,7 +28,7 @@ import es.esy.vivekrajendran.myapp.util.RecyclerViewAdapter;
 import es.esy.vivekrajendran.myapp.util.ThemeDialog;
 
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements WeatherAsyncCallback {
 
     private ArrayList<User> users = new ArrayList<>();
     private RecyclerViewAdapter mRecyclerViewAdapter;
@@ -115,5 +117,9 @@ public class HomeActivity extends AppCompatActivity {
         users.add(new User("Keerthi",      "+91 953151545", "UserOne", R.drawable.circle_c));
         mRecyclerViewAdapter.notifyDataSetChanged();
     }
-}
 
+    @Override
+    public void onTaskDone(ArrayList<WeatherModel> weatherModelArrayList) {
+
+    }
+}

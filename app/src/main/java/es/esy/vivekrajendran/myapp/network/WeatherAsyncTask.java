@@ -2,7 +2,6 @@ package es.esy.vivekrajendran.myapp.network;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,7 +14,7 @@ import es.esy.vivekrajendran.myapp.model.WeatherModel;
 
 
 public class WeatherAsyncTask extends AsyncTask<String, Void, ArrayList<WeatherModel>>
-        implements WeatherAsyncCallback{
+        implements WeatherAsyncCallback {
 
     private WeatherAsyncCallback weatherAsynceCallback = null;
 
@@ -31,7 +30,7 @@ public class WeatherAsyncTask extends AsyncTask<String, Void, ArrayList<WeatherM
 
     @Override
     protected void onPostExecute(ArrayList<WeatherModel> weatherModels) {
-        Log.i("TAG", "onPostExecute: " + weatherModels.get(0).getHumidity());
+//        Log.i("TAG", "onPostExecute: " + weatherModels.size());
         weatherAsynceCallback.onTaskDone(weatherModels);
     }
 

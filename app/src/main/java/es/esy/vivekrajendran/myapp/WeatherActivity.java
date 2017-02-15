@@ -32,7 +32,8 @@ public class WeatherActivity extends AppCompatActivity implements WeatherAsyncCa
         }
 
         new WeatherAsyncTask(this).
-                execute("http://api.openweathermap.org/data/2.5/weather?q=London,uk&apikey=1a4c6876e942269eeed475dd217d48e8");
+                execute(getResources().getString(R.string.usgs_baseurl) + "&" +
+                        getResources().getString(R.string.usgs_starttime));
 
         weather_title = (TextView) findViewById(R.id.txtView_weather_title);
         description = (TextView) findViewById(R.id.txtView_weather_description);
@@ -44,16 +45,16 @@ public class WeatherActivity extends AppCompatActivity implements WeatherAsyncCa
     @Override
     public void onTaskDone(ArrayList<WeatherModel> weatherModelArrayList) {
         this.arrayList = weatherModelArrayList;
-        Log.i("TAG", "onTaskDone: " + arrayList.size());
+//        Log.i("TAG", "onTaskDone: " + arrayList.size());
 
-        latitude.setText(arrayList.get(0).getLat());
-        weather_title.setText(arrayList.get(0).getLocation());
-        description.setText(arrayList.get(0).getDescription());
-        condition.setText(String.valueOf(arrayList.get(0).getTemp()));
-        Glide.with(this)
-                .load(getResources().getString(R.string.openweather_icon) + weatherModelArrayList.get(0).getImgae_id() + ".png")
-                .centerCrop()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(imageView);
+//        latitude.setText(arrayList.get(0).getLat());
+//        weather_title.setText(arrayList.get(0).getLocation());
+//        description.setText(arrayList.get(0).getDescription());
+//        condition.setText(String.valueOf(arrayList.get(0).getTemp()));
+//        Glide.with(this)
+//                .load(getResources().getString(R.string.openweather_icon) + weatherModelArrayList.get(0).getImgae_id() + ".png")
+//                .centerCrop()
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .into(imageView);
     }
 }
