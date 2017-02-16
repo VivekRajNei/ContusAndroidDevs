@@ -6,6 +6,7 @@ package es.esy.vivekrajendran.myapp;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -32,6 +36,8 @@ public class HomeActivity extends AppCompatActivity implements WeatherAsyncCallb
 
     private ArrayList<User> users = new ArrayList<>();
     private RecyclerViewAdapter mRecyclerViewAdapter;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +47,7 @@ public class HomeActivity extends AppCompatActivity implements WeatherAsyncCallb
             getSupportActionBar().setTitle("HomeActivity");
         }
 
+        initListener();
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.rcylr_home);
         mRecyclerViewAdapter = new RecyclerViewAdapter(users);
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
@@ -87,11 +94,13 @@ public class HomeActivity extends AppCompatActivity implements WeatherAsyncCallb
                 startActivity(new Intent(HomeActivity.this, GridActivity.class));
                 break;
             case R.id.menu_logout:
-                SharedPreferences.Editor editor = getSharedPreferences(Contract.Pref.PREF_NAME, MODE_PRIVATE).edit();
+                /*SharedPreferences.Editor editor = getSharedPreferences(Contract.Pref.PREF_NAME, MODE_PRIVATE).edit();
                 editor.putBoolean(Contract.Pref.ISLOGGED, false);
                 editor.apply();
                 startActivity(new Intent(this, LoginActivity.class));
                 HomeActivity.this.finish();
+                break;*/
+                FirebaseAuth.getInstance().signOut();
                 break;
             case R.id.menu_exit:
                 this.finish();
@@ -121,5 +130,29 @@ public class HomeActivity extends AppCompatActivity implements WeatherAsyncCallb
     @Override
     public void onTaskDone(ArrayList<WeatherModel> weatherModelArrayList) {
 
+    }
+
+    private void initListener() {
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (firebaseAuth.getCurrentUser() == null) {
+                    startActivity(new Intent(HomeActivity.this, SplashActivity.class));
+                    HomeActivity.this.finish();
+                }
+            }
+        };
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FirebaseAuth.getInstance().addAuthStateListener(mAuthStateListener);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        FirebaseAuth.getInstance().removeAuthStateListener(mAuthStateListener);
     }
 }

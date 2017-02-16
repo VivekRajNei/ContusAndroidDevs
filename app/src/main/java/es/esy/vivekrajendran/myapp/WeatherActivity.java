@@ -2,12 +2,8 @@ package es.esy.vivekrajendran.myapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 
@@ -16,10 +12,6 @@ import es.esy.vivekrajendran.myapp.network.WeatherAsyncCallback;
 import es.esy.vivekrajendran.myapp.network.WeatherAsyncTask;
 
 public class WeatherActivity extends AppCompatActivity implements WeatherAsyncCallback {
-
-    private ArrayList<WeatherModel> arrayList;
-    private TextView weather_title, description, condition, latitude;
-    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +27,16 @@ public class WeatherActivity extends AppCompatActivity implements WeatherAsyncCa
                 execute(getResources().getString(R.string.usgs_baseurl) + "&" +
                         getResources().getString(R.string.usgs_starttime));
 
-        weather_title = (TextView) findViewById(R.id.txtView_weather_title);
-        description = (TextView) findViewById(R.id.txtView_weather_description);
-        condition = (TextView) findViewById(R.id.txtView_weather_condition);
-        latitude = (TextView) findViewById(R.id.txtView_weather_lat);
-        imageView = (ImageView) findViewById(R.id.img_weather_image);
+        TextView weather_title = (TextView) findViewById(R.id.txtView_weather_title);
+        TextView description = (TextView) findViewById(R.id.txtView_weather_description);
+        TextView condition = (TextView) findViewById(R.id.txtView_weather_condition);
+        TextView latitude = (TextView) findViewById(R.id.txtView_weather_lat);
+        ImageView imageView = (ImageView) findViewById(R.id.img_weather_image);
     }
 
     @Override
     public void onTaskDone(ArrayList<WeatherModel> weatherModelArrayList) {
-        this.arrayList = weatherModelArrayList;
+        ArrayList<WeatherModel> arrayList = weatherModelArrayList;
 //        Log.i("TAG", "onTaskDone: " + arrayList.size());
 
 //        latitude.setText(arrayList.get(0).getLat());
